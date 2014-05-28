@@ -81,7 +81,11 @@ function CryptsyClient(key, secret) {
           callback.call(this, error, null);
         }
         else {
-          callback.call(this, null, response.return);
+          if (response.return) {
+            callback.call(this, null, response.return);
+          } else {
+            callback.call(this, null, response);
+          }
         }
       }
     });
