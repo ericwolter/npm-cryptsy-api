@@ -188,6 +188,10 @@ function CryptsyClient(key, secret) {
     api_query('cancelorder', callback, { orderid: orderid });
   }
 
+  self.cancelallorders = function(callback) {
+    api_query('cancelallorders', callback);
+  }
+
   self.calculatefees = function(ordertype, quantity, price, callback) {
     api_query('calculatefees', callback, { ordertype: ordertype, quantity: quantity, price: price });
   }
