@@ -64,9 +64,12 @@ function CryptsyClient(key, secret) {
       if(!body || !res || res.statusCode != 200) {
         error = "Error in server response.";
 
-        setTimeout(function() {
-          api_query(method, callback, args);
-        }, 500);
+        // don't in transparent request retrying
+        // potentially messing with async functionality
+        // in the user code
+        // setTimeout(function() {
+        //   api_query(method, callback, args);
+        // }, 500);
       }
       else {
         var response = JSON.parse(body);
@@ -123,6 +126,10 @@ function CryptsyClient(key, secret) {
 
   self.orderdata = function(callback) {
     api_query('orderdata', callback);
+  }
+
+  self.orderdatav2 = function(callback) {
+    api_query('orderdatav2', callback);
   }
 
   self.singleorderdata = function(marketid, callback) {
